@@ -22,6 +22,8 @@ model User{
   avatar String ?
   bengkel Bengkel[]
   review Review[]
+  savedBengkel SavedBengkel[]
+
 }
 
 model Bengkel{
@@ -31,12 +33,13 @@ model Bengkel{
   rating Float ?
   services String[]
   specialization String
-  description String ?
+  description String
   image String ?
   coordinate Float[]
   user User @relation(fields: [userId], references: [id])
   userId String @db.ObjectId
   review Review[]
+  savedBengkel SavedBengkel[]
 }
 
 model Review{
@@ -47,4 +50,13 @@ model Review{
   bengkel Bengkel @relation(fields: [bengkelId], references: [id])
   description String
   rating Float
+}
+
+model SavedBengkel{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  user User @relation(fields: [userId], references: [id])
+  bengkel Bengkel @relation(fields: [bengkelId], references: [id])
+  userId String @db.ObjectId
+  bengkelId String @db.ObjectId
+  @@unique([userId, bengkelId])
 }

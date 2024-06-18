@@ -16,29 +16,7 @@ export const getUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const id = req.params.id;
-  const tokenUserId = req.userId;
-  const { password, ...inputs } = req.body;
-
-  if (id !== tokenUserId) {
-    return res.status(403).json({ message: "Not Authorized!" });
-  }
-
-  let updatedPassword = null;
   try {
-    if (password) {
-      updatedPassword = await bcrypt.hash(password, 10);
-    }
-
-    const updatedUser = await prisma.user.update({
-      where: { id },
-      data: {
-        ...inputs,
-        ...(updatedPassword && { password: updatedPassword })
-      },
-    });
-
-    const { password: userPassword, ...rest } = updatedUser;
 
     res.status(200).json(rest);
   } catch (err) {
@@ -66,35 +44,34 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const savePost = async (req, res) => {
-  const postId = req.body.postId;
+export const saveBengkel = async (req, res) => {
+  const bengkelId = req.body.bengkelId;
   const tokenUserId = req.userId;
-
   try {
-    const savedPost = await prisma.savedPost.findUnique({
-      where: {
-        userId_postId: {
+    const savedBengkel = await prisma.savedBengkel.findUnique({
+      where:{
+        userId_bengkelId:{
           userId: tokenUserId,
-          postId,
-        },
-      },
-    });
+          bengkelId,
+        }
+      }
+    })
 
-    if (savedPost) {
-      await prisma.savedPost.delete({
-        where: {
-          id: savedPost.id,
-        },
-      });
-      res.status(200).json({ message: "Post removed from saved list" });
-    } else {
-      await prisma.savedPost.create({
-        data: {
+    if(savedBengkel){
+      await prisma.savedBengkel.delete({
+        where:{
+          id: savedBengkel.id
+        }
+      })
+      res.status(200).json({ message: "Workshop removed from saved list" });
+    }else{
+      await prisma.savedBengkel.create({
+        data:{
           userId: tokenUserId,
-          postId,
-        },
-      });
-      res.status(200).json({ message: "Post saved" });
+          bengkelId
+        }
+      })
+      res.status(200).json({ message: "Workshop saved" });
     }
   } catch (err) {
     console.log(err);
@@ -102,21 +79,23 @@ export const savePost = async (req, res) => {
   }
 };
 
-export const profilePosts = async (req, res) => {
+export const profileBengkel = async (req, res) => {
   const tokenUserId = req.userId;
   try {
-    const userPosts = await prisma.post.findMany({
+    const userBengkel = await prisma.bengkel.findMany({
       where: { userId: tokenUserId },
     });
-    const saved = await prisma.savedPost.findMany({
+    const saved = await prisma.savedBengkel.findMany({
       where: { userId: tokenUserId },
       include: {
-        post: true,
+        bengkel: true,
       },
     });
-
-    const savedPosts = saved.map((item) => item.post);
-    res.status(200).json({ userPosts, savedPosts });
+    
+    const savedBengkel = saved.map((item) => item.bengkel);
+    // setTimeout(() => {
+    res.status(200).json({ userBengkel, savedBengkel });
+    // }, 100);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get profile posts!" });

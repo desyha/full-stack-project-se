@@ -19,8 +19,9 @@ export const getAllBengkel = async (req, res) => {
                 }
             })
         }
-
+        // setTimeout(() => {
         res.status(200).json(bengkelsearch)
+        // }, 300);
     }catch(err){
         console.log(err)
         res.status(500).json({message: "Failed to get workshop"})
@@ -36,8 +37,28 @@ export const getBengkel = async (req, res) => {
                 review:true
             }
         })
-            
-        res.status(200).json(bengkel)
+
+        const token = req.cookies?.token;
+
+        if (token) {
+          jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
+            if (!err) {
+              const saved = await prisma.savedBengkel.findUnique({
+                where: {
+                    userId_bengkelId: {
+                    bengkelId: id,
+                    userId: payload.id,
+                  },
+                },
+              });
+              res.status(200).json({ ...bengkel, isSaved: saved ? true : false });
+            }
+          });
+        }else{
+            res.status(200).json({ ...bengkel, isSaved: false });
+
+        }
+        
     }catch(err){
         console.log(err)
         res.status(500).json({message: "Failed to get workshop"})
@@ -54,6 +75,7 @@ export const addBengkel = async (req, res) => {
                 userId: tokenUserId
             }
          })
+         
         res.status(200).json(newBengkel)
     }catch(err){
         console.log(err)
@@ -61,52 +83,36 @@ export const addBengkel = async (req, res) => {
     }
 }
 
-export const updateBengkel = async (req, res) => {
-    
-    try{
-        
-        res.status(200).json()
-    }catch(err){
-        console.log(err)
-        res.status(500).json({message: "Failed to update workshop"})
-    }
-}
-
-export const deleteBengkel = async (req, res) => {
-    const id = req.params.id
-    const tokenUserId = req.userId
-    try{
-        const bengkel = await prisma.bengkel.findUnique({
-            where:{id}
-        })
-        if(bengkel.userId!==tokenUserId){
-            return req.status(403).json({message:"Not authorized"})
-        }
-        await prisma.bengkel.delete({
-            where:{id}
-        })
-        res.status(200).json({message:"bengkel deleted"})
-    }catch(err){
-        console.log(err)
-        res.status(500).json({message: "Failed to delete workshop"})
-    }
-}
-
 export const reviewBengkel = async (req, res) => {
-    const body = req.body
+    const body = req.body;
     const tokenUserId = req.userId;
-    const urlbengkelId = req.url.split("/")[1]
-    try{
+    const urlbengkelId = req.url.split("/")[1];
+
+    try {
         const newReview = await prisma.review.create({
-            data:{
-                ...body.postData, 
+            data: {
+                ...body.postData,
                 userId: tokenUserId,
-                bengkelId : urlbengkelId
+                bengkelId: urlbengkelId
             }
-        })
-        res.status(200).json(newReview)
-    }catch(err){
-        console.log(err)
-        res.status(500).json({message: "Failed to leave a review"})
+        });
+
+        const reviews = await prisma.review.findMany({
+            where: { bengkelId: urlbengkelId }
+        });
+
+        const totalReviews = reviews.length;
+        const sumRatings = reviews.reduce((sum, review) => sum + review.rating, 0);
+        const averageRating = sumRatings / totalReviews;
+
+        const updatedBengkel = await prisma.bengkel.update({
+            where: { id: urlbengkelId },
+            data: { rating: averageRating }
+        });
+
+        res.status(200).json({ newReview, updatedBengkel });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Failed to leave a review" });
     }
-}
+};
