@@ -1,0 +1,13 @@
+.listPage{
+    padding-top: 10px;
+    min-height: 80vh;
+    display: flex; 
+    overflow-y: scroll;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 77%;
+    .bengkels{
+        padding: 20px;
+    }
+}

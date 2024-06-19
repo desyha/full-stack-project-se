@@ -1,0 +1,46 @@
+.homePage{
+    min-height: 90vh;
+}
+.compBengkel{
+        display: flex;
+        padding: 20px 0px;
+        flex-direction: column;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+
+    .bengkels{
+        gap: 25px;
+        height: 320px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        overflow-y: scroll;
+        .load{
+            text-align: center;
+        }
+        
+    }
+    
+    .spanbengkel{
+        width: 100%;
+        gap: 25px;
+        display: flex;
+        align-items: center;
+        
+        flex-direction: row;
+        .lihatsemua{
+            float: right;
+            color: white;
+            font-weight: bold;
+            background-color: #1442c5;
+            padding: 8px 10px;
+            margin: 20px;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            &:hover{
+                background-color: #f59e3c;
+            }
+        }
+    }
+}

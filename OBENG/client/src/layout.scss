@@ -1,0 +1,26 @@
+@import "./responsive.scss";
+
+.layout{
+    height: 100vh;
+    max-width:1366px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y:auto;
+
+    @include lg{
+        max-width: 1280px;
+    }
+
+    @include md{
+        max-width: 768px;
+    }
+
+    @include sm{
+        max-width: 640px;
+    }
+
+}
+
+.foot{
+    background-color: #e9e9e9;
+}

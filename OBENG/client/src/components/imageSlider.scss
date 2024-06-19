@@ -1,0 +1,15 @@
+@import "../responsive.scss";
+
+.each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 300px;
+    @include md{
+        height: 200px;
+    }
+    @include sm{
+        height: 120px;
+    }
+  }

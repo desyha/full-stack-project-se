@@ -1,0 +1,102 @@
+@import "../../responsive.scss";
+
+h2{
+    text-align: left;
+}
+
+.form-create{
+    padding: 20px 20px;
+    border-radius: 15px;
+    display: flex;
+    min-height: 80vh;
+    width: 80%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+   justify-content: center;
+   @include sm{
+    flex-direction: column;
+    }
+    
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 185%;
+        margin: 30px 50px;
+        padding: 15px 40px;
+        border: none;
+        @include sm{
+            width: 100%;
+            }
+        h2{
+            margin: 15px 0px;
+        }
+        div{
+            padding: 10px 0px;
+        }
+        input{
+            margin-top: 5px;
+            width: 100%;
+            background-color: white;
+        }
+        button{
+            width: 100%;
+            color: white;
+            font-size: 17px;
+            height: 45px;
+            font-weight: bold;
+            background-color: #1442c5;
+            margin-bottom: 5px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            &:hover{
+                background-color: #f59e3c;
+            }
+        }
+        .errcreate{
+            position: absolute;
+        }
+        select{
+            width: 100%;
+            margin-top: 5px;
+            height: 30px;
+            border:0px;
+            outline:0px;
+            outline: none;
+            border-radius: 10px;
+        }
+        textarea{
+            margin-top: 5px;
+            outline: none;
+            border: none;
+            width: 100%;
+            padding: 5px 20px;
+            border-radius: 10px;
+            resize: none;
+        }
+        .coordinate{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            span{
+                width: 45%;
+            }
+        }
+    }
+    .upimg{
+        justify-content: center;
+        align-items: center;
+        // flex-direction: row;
+        max-width:35%;
+        @include sm{
+            max-width: 70%;
+            }
+        img{
+            border-radius: 10px;
+            // height: 20cap;
+            width:100%;
+        }
+    }
+}

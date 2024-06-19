@@ -1,0 +1,34 @@
+@import "../../responsive.scss";
+
+.layout{
+    height: 100vh;
+    // max-width:1366px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    overflow-y:auto;
+
+    .header{
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background-color: white;
+    }
+
+
+}
+
+.content{
+    .pages{
+        min-height: 100%;
+    }
+    .foot{
+        margin-top: auto;
+        background-color: #e9e9e9;
+        position: relative; 
+        width:100%;
+        justify-content: flex-end;
+    }
+}
+

@@ -1,0 +1,15 @@
+.filter{
+    display: flex;
+    flex-direction: column;
+    .query-text{
+        font-weight: bold;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    select{
+        display: flex;
+        border-radius: 5px;
+        border-color: #aaaaaa;
+        height: 120%;
+    }
+}

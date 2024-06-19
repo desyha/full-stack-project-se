@@ -1,0 +1,19 @@
+.reviews{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:15px;
+    padding: 10px 0;
+    .imgcontainer{
+        img{
+            height: 40px;
+        }
+    }
+    .textcontainer{
+        .rating{
+            img{
+                height: 15px;
+            }
+        }
+    }
+}

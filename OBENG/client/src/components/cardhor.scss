@@ -1,0 +1,52 @@
+@import "../responsive.scss";
+
+// @include md{
+//     height: 200px;
+// }
+
+.cardhor{
+    display: flex;
+    gap: 10px;
+    height: 90%;
+    justify-content: start;
+    flex-direction: column;
+    .imageContainerhor{
+        height: 150px;
+        width: 250px;
+        @include sm{
+            height: 120px;
+            width: 200px;
+        }
+        img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    .textContainerhor{
+        .ratinghor{
+            font-weight: bold;
+            padding: 7px 0px;
+            img{
+                height: 15px;
+            }
+        }
+
+        .address{
+            padding-bottom: 5px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            height: 21px;
+            width: 100%;
+        }
+
+        .specializationhor{
+            border-radius: 5px;
+            background-color: #e9e9e9;
+            text-align: center;
+            width: 70px;
+        }
+    }
+}
