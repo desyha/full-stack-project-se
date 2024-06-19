@@ -19,14 +19,13 @@ export const getAllBengkel = async (req, res) => {
                 }
             })
         }
-        // setTimeout(() => {
         res.status(200).json(bengkelsearch)
-        // }, 300);
     }catch(err){
         console.log(err)
         res.status(500).json({message: "Failed to get workshop"})
     }
 }
+
 
 export const getBengkel = async (req, res) => {
     const id = req.params.id
@@ -37,9 +36,7 @@ export const getBengkel = async (req, res) => {
                 review:true
             }
         })
-
         const token = req.cookies?.token;
-
         if (token) {
           jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
             if (!err) {
@@ -56,9 +53,7 @@ export const getBengkel = async (req, res) => {
           });
         }else{
             res.status(200).json({ ...bengkel, isSaved: false });
-
         }
-        
     }catch(err){
         console.log(err)
         res.status(500).json({message: "Failed to get workshop"})
@@ -74,8 +69,7 @@ export const addBengkel = async (req, res) => {
                 ...body.postData, 
                 userId: tokenUserId
             }
-         })
-         
+         })        
         res.status(200).json(newBengkel)
     }catch(err){
         console.log(err)
@@ -87,7 +81,6 @@ export const reviewBengkel = async (req, res) => {
     const body = req.body;
     const tokenUserId = req.userId;
     const urlbengkelId = req.url.split("/")[1];
-
     try {
         const newReview = await prisma.review.create({
             data: {
@@ -96,20 +89,16 @@ export const reviewBengkel = async (req, res) => {
                 bengkelId: urlbengkelId
             }
         });
-
         const reviews = await prisma.review.findMany({
             where: { bengkelId: urlbengkelId }
         });
-
         const totalReviews = reviews.length;
         const sumRatings = reviews.reduce((sum, review) => sum + review.rating, 0);
         const averageRating = sumRatings / totalReviews;
-
         const updatedBengkel = await prisma.bengkel.update({
             where: { id: urlbengkelId },
             data: { rating: averageRating }
         });
-
         res.status(200).json({ newReview, updatedBengkel });
     } catch (err) {
         console.log(err);

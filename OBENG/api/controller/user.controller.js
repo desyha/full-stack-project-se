@@ -1,6 +1,4 @@
 import prisma from "../lib/prisma.js";
-import bcrypt from "bcrypt";
-
 
 export const getUser = async (req, res) => {
   const id = req.params.id;
@@ -15,24 +13,12 @@ export const getUser = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
-  try {
-
-    res.status(200).json(rest);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to update users!" });
-  }
-};
-
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
   const tokenUserId = req.userId;
-
   if (id !== tokenUserId) {
     return res.status(403).json({ message: "Not Authorized!" });
   }
-
   try {
     await prisma.user.delete({
       where: { id },
@@ -56,7 +42,6 @@ export const saveBengkel = async (req, res) => {
         }
       }
     })
-
     if(savedBengkel){
       await prisma.savedBengkel.delete({
         where:{
@@ -91,11 +76,8 @@ export const profileBengkel = async (req, res) => {
         bengkel: true,
       },
     });
-    
     const savedBengkel = saved.map((item) => item.bengkel);
-    // setTimeout(() => {
     res.status(200).json({ userBengkel, savedBengkel });
-    // }, 100);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get profile posts!" });
