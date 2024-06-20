@@ -7,9 +7,9 @@
     background-size: cover;
     height: 300px;
     @include md{
-        height: 200px;
+        height: 210px;
     }
     @include sm{
-        height: 120px;
+        height: 150px;
     }
   }

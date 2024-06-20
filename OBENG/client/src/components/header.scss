@@ -18,6 +18,7 @@ nav{
         .logo{
             display: flex;
             align-items: center;
+            margin-right: 20px;
             .original{
                 img{
                     height: 40px;
@@ -31,7 +32,7 @@ nav{
                     display: none;
                       @include sm{
                         display:flex;
-                        height: 40px;
+                        height: 45px;
                     }
                 }
             }
@@ -46,7 +47,7 @@ nav{
         align-items: center;
         justify-content: center;
         @include sm{
-            height: 60%;
+            max-width: 60%;
         }   
     }
 
@@ -61,22 +62,6 @@ nav{
             display: flex;
             align-items: center;
             flex-direction: row;
-            button{
-                color: white;
-            font-weight: bold;
-            background-color: #1442c5;
-            padding: 12px 24px;
-            margin: 20px;
-            @include md{
-                padding: 5px 15px;
-                margin: 20px;
-            }
-            border-radius: 10px;
-            transition: all 0.4s ease;
-            &:hover{
-                background-color: #f59e3c;
-            }
-            }
             img{
                 height: 40px;
             }
@@ -90,6 +75,12 @@ nav{
             margin: 20px;
             border-radius: 10px;
             transition: all 0.4s ease;
+            @include sm{
+                padding: 7px 15px;
+            }
+            @include sm{
+                padding: 7px 15px;
+            }
             &:hover{
                 background-color: #f59e3c;
             }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./footer.scss";
 
 function Footer(){
@@ -30,8 +31,8 @@ function Footer(){
         </div>
       </div>
       <div
-        className="copyright2023"
-      >{`Copyright © 2024 OBENG. All Rights Reserved `}</div>
+        className="copyright2024"
+      ><Link to={`https://github.com/desyha/full-stack-project-se/blob/0b25d8365ebb21bae29da64aa07bcf683d140db3/OBENG/client/README.md`}>Credits</Link></div>
     </section>
   );
 };
