@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiRequest = axios.create({
-    baseURL: "http://localhost:3500/api",
+    baseURL: "https://obeng-api.vercel.app",
     withCredentials: true
 })
 
