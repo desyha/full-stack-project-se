@@ -50,8 +50,8 @@ export const login = async (req, res) => {
                 httpOnly: true,
                 secure: true,
                 maxAge: age,
-                sameSite: 'None',
-                secure: true
+                // sameSite: 'None',
+                // secure: true
             }).status(200).json({userInfo})
         }
     }catch(err){
