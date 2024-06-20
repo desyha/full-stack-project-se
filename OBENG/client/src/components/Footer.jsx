@@ -6,7 +6,7 @@ function Footer(){
     <section className="footer">
       <img className="footerChild" alt=""/>
       <div className="decisionMaker">
-        <div className="contactUs"><Link to={`https://github.com/desyha/full-stack-project-se/blob/0b25d8365ebb21bae29da64aa07bcf683d140db3/README.md`}>Credits</Link></div>
+        <div className="contactUs"><Link to={`https://github.com/desyha/full-stack-project-se/blob/6820d9845cc4cd995a7734486e63603e29846356/README.md`}>Credits</Link></div>
       </div>
       <div className="outputTransformer">
         <div className="delayer">
