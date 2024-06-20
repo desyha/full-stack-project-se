@@ -65,22 +65,21 @@ export const saveBengkel = async (req, res) => {
 };
 
 export const profileBengkel = async (req, res) => {
-    const tokenUserId = req.userId;
-    try {
-        const userBengkel = await prisma.bengkel.findMany({
-            where: { userId: tokenUserId },
-        });
-        const saved = await prisma.savedBengkel.findMany({
-            where: { userId: tokenUserId },
-            include: {
-                bengkel: true,
-            },
-        });
-        const savedBengkel = saved.map((item) => item.bengkel);
-        res.status(200).json({ userBengkel, savedBengkel });
-    } catch (err) {
-        console.error('Error fetching profile posts:', err);
-        res.status(500).json({ message: "Failed to get profile posts!" });
-    }
+  const tokenUserId = req.userId;
+  try {
+    const userBengkel = await prisma.bengkel.findMany({
+      where: { userId: tokenUserId },
+    });
+    const saved = await prisma.savedBengkel.findMany({
+      where: { userId: tokenUserId },
+      include: {
+        bengkel: true,
+      },
+    });
+    const savedBengkel = saved.map((item) => item.bengkel);
+    res.status(200).json({ userBengkel, savedBengkel });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to get profile posts!" });
+  }
 };
-
