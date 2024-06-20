@@ -8,8 +8,6 @@ import List from "../../components/List.jsx";
 
 function Profile(){
     const data = useLoaderData();
-    const bengkelsave = postResponse.data.savedBengkel
-    const save = bengkelsave.map((item) => item.bengkel);
 
     const {updateUser, currentUser} = useContext(AuthContext)
     const [error, setError] = useState("")
@@ -63,7 +61,7 @@ function Profile(){
                             resolve={data.postResponse}
                             errorElement={<p className="load">Nothing here yet!</p>}
                             >
-                            {<List posts={save} />}
+                            {(postResponse) => <List posts={postResponse.data.savedBengkel} />}
                             </Await>
                         </Suspense>
                         </div>
