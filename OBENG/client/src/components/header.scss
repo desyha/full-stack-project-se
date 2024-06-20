@@ -18,10 +18,26 @@ nav{
         .logo{
             display: flex;
             align-items: center;
-            img{
-                height: 40px;
+            .original{
+                img{
+                    height: 40px;
+                    @include sm{
+                        display: none;
+                    }
+                }
             }
+            .logoonly{
+                img{
+                    display: none;
+                      @include sm{
+                        display:flex;
+                        height: 40px;
+                    }
+                }
+            }
+
         }
+
     }
 
     .middle{
@@ -29,7 +45,9 @@ nav{
         max-width: 40%;
         align-items: center;
         justify-content: center;
-        
+        @include sm{
+            height: 60%;
+        }   
     }
 
     .right{
@@ -60,7 +78,7 @@ nav{
             }
             }
             img{
-                height: 45px;
+                height: 40px;
             }
         }
 

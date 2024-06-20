@@ -60,7 +60,7 @@ export const saveBengkel = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to delete users!" });
+    res.status(500).json({ message: "Failed to save!" });
   }
 };
 

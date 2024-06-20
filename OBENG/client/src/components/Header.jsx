@@ -11,7 +11,12 @@ function Header(){
         <nav>
             <div className="left">
                 <Link to="/" className="logo">
-                    <img src="/logoObeng.png"></img>
+                    <div className="original">
+                        <img src="/logoObeng.png"></img>
+                    </div>
+                    <div className="logoonly">
+                        <img src="/logoObengsquare.png"></img>
+                    </div>
                 </Link>
             </div>
             <div className="middle">
@@ -21,7 +26,7 @@ function Header(){
                 {currentUser ? (
                     <div className="profile">
                         <div>
-                            <Link to={"/Profile"}>
+                            <Link to={"/profile"}>
                             <img src={"/iconUserProfilePicture.png"}/></Link>
                         </div>
                     </div>
