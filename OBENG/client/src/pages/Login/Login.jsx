@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./login.scss"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import axios from "axios";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext.jsx";
@@ -55,14 +55,14 @@ function Login(){
                 </form>
                 <div className="alternatif">
                     <div className="infoone">
-                        <span>Belum mempunyai akun? <a href="/register">Sign Up!</a></span>
+                        <span>Belum mempunyai akun? <Link to="/register">Sign Up!</Link></span>
                     </div>
                     <hr></hr>
                     <div className="infotwo">
                         <span>Atau dapat menggunakan cara alternatif</span>
                     </div>
                     <div className="tamu">
-                        <span><a href="/">Masuk sebagai tamu</a></span>
+                        <span><Link to="/">Masuk sebagai tamu</Link></span>
                     </div>
                 </div>
             </div>
