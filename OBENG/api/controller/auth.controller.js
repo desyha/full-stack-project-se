@@ -47,7 +47,7 @@ export const login = async (req, res) => {
             const {password:userpass, ...userInfo} = user
      
             res.cookie("token", token, {
-                httpOnly:true,
+                // httpOnly:true,
                 secure:true,
                 maxAge: age,
             }).status(200).json({userInfo})
