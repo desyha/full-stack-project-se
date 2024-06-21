@@ -1,8 +1,8 @@
 # Project OBENG
 
-Repos ini merupakan project dari matakuliah Software Engineering (COMP6100001) - LJ01 yang dibimbing oleh Kanyadian Idananta (D5416), dan Agile Software Development (COMP6884001) yang dibimbing oleh Anderies, B.Eng., S.Kom., M.Kom. (D6657)
+Repos ini merupakan project dari mata kuliah Software Engineering (COMP6100001) - LJ01 yang dibimbing oleh Kanyadian Idananta (D5416), dan Agile Software Development (COMP6884001) yang dibimbing oleh Anderies, B.Eng., S.Kom., M.Kom. (D6657)
 
-Code contributors
+Code contributors 
 
 2602193862 - Dea Syahbilah Amanda
 
